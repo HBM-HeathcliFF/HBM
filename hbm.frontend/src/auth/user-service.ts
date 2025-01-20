@@ -18,6 +18,7 @@ export async function loadUser() {
     setAuthHeader(token);
     setIdToken(user?.id_token);
     setUserRole(user?.access_token);
+    return localStorage.getItem('user_role');
 }
 
 export const signinRedirect = () => userManager.signinRedirect();

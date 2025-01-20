@@ -11,12 +11,17 @@ import { Component } from 'react';
 class App extends Component<any, any> {
     constructor(props: any) {
         super(props);
+        this.handleGetRole = this.handleGetRole.bind(this);
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.state = {
             isLoggedIn: localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') === 'true' : false,
             role: localStorage.getItem('user_role') ? localStorage.getItem('user_role') : ''
         };
+    }
+
+    handleGetRole() {
+        this.setState({role: localStorage.getItem('user_role')});
     }
     
     handleLoginClick() {
@@ -26,17 +31,17 @@ class App extends Component<any, any> {
     
     handleLogoutClick() {
         localStorage.setItem('isLoggedIn', 'false');
-        localStorage.setItem('user_role', '');
         signoutRedirect({'id_token_hint': localStorage.getItem('id_token')});
     }
     render()
     {
-        loadUser();
+        loadUser().then(res => {
+            localStorage.setItem('user_role', res ? res : '');
+            this.handleGetRole();
+        });
 
-        const isLoggedIn = this.state.isLoggedIn;
-        const role = this.state.role;
         let button;
-        if (isLoggedIn) {
+        if (this.state.isLoggedIn) {
             button = <LogoutButton onClick={this.handleLogoutClick} />;
         } else {
             button = <LoginButton onClick={this.handleLoginClick} />;
@@ -48,8 +53,8 @@ class App extends Component<any, any> {
                     <div className="header__block">
                             
                         <img className="icon" src={logoImg}/>
-                        
-                        <Greeting role={role} />
+
+                        <Greeting role={this.state.role}/>
                                 
                         <div className="header__right_part">
                             <input type="search" className="header__search"/>
@@ -100,15 +105,14 @@ function LogoutButton(props: any) {
 }
 
 function Greeting(props: any) {
-    const role = props.role;
-    if (role === "Owner" ||
-        role === "Admin") {
-        return <AdminGreeting />;
+    if (props.role === "Owner" ||
+        props.role === "Admin") {
+        return <AdminGreeting/>;
     }
-    return <UserGreeting />;
+    return <UserGreeting/>;
 }
 
-function UserGreeting(props: any) {
+function UserGreeting() {
     return(
     <ul className="header__buttons_panel">
         <a href="/"><li className="menu__item">Новое</li></a>
@@ -119,7 +123,7 @@ function UserGreeting(props: any) {
     </ul>)
 }
   
-function AdminGreeting(props: any) {
+function AdminGreeting() {
     return(
     <ul className="header__buttons_panel">
         <a href="/"><li className="menu__item">Новое</li></a>
