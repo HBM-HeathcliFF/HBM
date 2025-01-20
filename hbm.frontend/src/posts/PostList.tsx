@@ -10,10 +10,8 @@ const PostList: FC<{}> = (): ReactElement => {
     const [posts, setPosts] = useState<PostLookupDto[] | undefined>(undefined);
 
     async function getPosts() {
-        if (localStorage.getItem('token') !== '') {
-            const postListVm = await apiClient.getAll2('1.0');
-            setPosts(postListVm.posts);
-        }
+        const postListVm = await apiClient.getAll2('1.0');
+        setPosts(postListVm.posts);
     }
 
     useEffect(() => {

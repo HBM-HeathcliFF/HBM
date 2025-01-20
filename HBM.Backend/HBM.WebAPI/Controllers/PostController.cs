@@ -37,11 +37,8 @@ namespace HBM.WebAPI.Controllers
         /// </remarks>
         /// <returns>Returns PostListVm</returns>
         /// <response code="200">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpGet]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<PostListVm>> GetAll()
         {
             var query = new GetPostListQuery();
@@ -58,11 +55,8 @@ namespace HBM.WebAPI.Controllers
         /// </remarks>
         /// <returns>Returns PostDetailsVm</returns>
         /// <response code="200">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpGet("{id}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<PostDetailsVm>> Get(Guid id)
         {
             var query = new GetPostDetailsQuery
