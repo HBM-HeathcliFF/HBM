@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/HBM.Backend/HBM.WebAPI/HBM.db
+/HBM.Backend/HBM.WebAPI/HBM.db-shm
+/HBM.Backend/HBM.WebAPI/HBM.db-wal
+/HBM.Backend/HBM.WebAPI/HBMWebAppLog*
+/HBM.Identity/HBM.Identity/HBM.Auth.db
+/HBM.Identity/HBM.Identity/HBM.Auth.db-shm
+/HBM.Identity/HBM.Identity/HBM.Auth.db-wal
+/HBM.Identity/HBM.Identity/tempkey.jwk
+/HBM.Identity/HBM.Identity/keys/is-signing-key-6AAF82F04C087D5E59457BF814B44858.json
