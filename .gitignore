@@ -369,4 +369,4 @@ FodyWeavers.xsd
 /HBM.Identity/HBM.Identity/HBM.Auth.db-shm
 /HBM.Identity/HBM.Identity/HBM.Auth.db-wal
 /HBM.Identity/HBM.Identity/tempkey.jwk
-/HBM.Identity/HBM.Identity/keys/is-signing-key-6AAF82F04C087D5E59457BF814B44858.json
+/HBM.Identity/HBM.Identity/keys*
