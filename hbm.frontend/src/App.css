@@ -39,6 +39,18 @@
     display: flex;
     width: 150px;
 }
+.username {
+	color: white;
+    font-size: 24px;
+    margin: 35px 0;
+    padding: 5px 10px 5px 10px;
+}
+.logout_button {
+    margin: 35px 0;
+    height: 35px;
+    width: 45px;
+    padding: 5px 10px 5px 10px;
+}
 .header__search {
     margin-top: auto;
     margin-bottom: auto;
@@ -47,6 +59,7 @@
     height: 23px;
     display: flex;
     border-radius: 3px;
+    padding-left: 4px;
 }
 .icon {
     margin: 35px 35px 35px 35px;
@@ -58,7 +71,7 @@
     flex: 1 1 auto; /*прижать футер*/
 }
 .main__block {
-    width: 70%;
+    width: 740px;
     display: flex;
     flex-direction: column;
 }
@@ -122,19 +135,59 @@
     margin-left: auto;
     margin-right: 25px;
 }
+.input_block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 0px 0px;
+}
+.input_title {
+    margin: 20px;
+    width: 700px;
+    height: 23px;
+    display: flex;
+    border-radius: 3px;
+    padding-left: 4px;
+}
+.input_details {
+    margin: 20px;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    border-radius: 3px;
+    padding: 4px;
+    max-width: 700px;
+    min-width: 700px;
+}
+.button_panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.create_button {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+    height: 27px;
+    border-radius: 3px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
 .auth_button {
-  background-color: #1F262A;
-  color: white;
-  font-size: 24px;
-  margin: 35px 0;
-  padding: 5px 10px 5px 10px;
+    background-color: #1F262A;
+    color: white;
+    font-size: 24px;
+    margin: 35px 0;
+    padding: 5px 10px 5px 10px;
 }
 .auth_button:hover {
-  background-color: #1F262A;
-  color: white;
-  text-decoration: underline ;
-  font-size: 24px;
-  margin: 35px 0;
+    background-color: #1F262A;
+    color: white;
+    text-decoration: underline ;
+    font-size: 24px;
+    margin: 35px 0;
 }
 .menu__item {
     color: white;

@@ -6,8 +6,12 @@ const SigninOidc: FC<{}> = () => {
     const navigate = useNavigate();
     useEffect(() => {
         async function signinAsync() {
-            await signinRedirectCallback();
-            navigate('/');
+            try {
+                await signinRedirectCallback();
+                navigate('/');
+            } catch (error) {
+                // Could not load source 'localhost꞉44357/_framework/aspnetcore-browser-refresh.js': Source not found.
+            }
         }
         signinAsync();
     }, [navigate]);

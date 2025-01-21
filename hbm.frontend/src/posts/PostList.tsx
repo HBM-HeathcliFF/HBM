@@ -21,7 +21,7 @@ const PostList: FC<{}> = (): ReactElement => {
     return (
         <section>
             {posts?.map((post) => (
-                <div className="post">
+                <div className="post" key={post.id}>
                 
                     <ul>
                         <a href="/"><li className="post__title">{post.title}</li></a>

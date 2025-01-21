@@ -1,5 +1,5 @@
 import { UserManager, UserManagerSettings } from 'oidc-client';
-import { setAuthHeader, setIdToken, setUserRole} from './auth-headers';
+import { setAuthHeader, setIdToken, setUserName, setUserRole} from './auth-headers';
 
 const userManagerSettings: UserManagerSettings = {
     client_id: 'hbm-web-app',
@@ -18,7 +18,8 @@ export async function loadUser() {
     setAuthHeader(token);
     setIdToken(user?.id_token);
     setUserRole(user?.access_token);
-    return localStorage.getItem('user_role');
+    setUserName(user?.access_token);
+    return localStorage.getItem('token');
 }
 
 export const signinRedirect = () => userManager.signinRedirect();
