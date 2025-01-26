@@ -5,7 +5,7 @@ import logoImg from '../images/logo.png';
 import { AuthContext } from '../auth/auth-provider';
 
 function Header() {
-    const { role, name, isAuthenticated, setRole, setName, setAuth } = useContext(AuthContext);
+    const { role, name, isAuthenticated } = useContext(AuthContext);
 
     function handleLoginClick() {
         signinRedirect();

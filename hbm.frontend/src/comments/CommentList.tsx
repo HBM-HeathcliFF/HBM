@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Client, CommentLookupDto, CreateCommentDto } from '../api/api';
 import SendComment from '../images/send_comment.png';
+import { AuthContext } from '../auth/auth-provider';
 
 const apiClient = new Client('https://localhost:44327');
 
 function CommentList(props: any) {
     const [comments, setComments] = useState<CommentLookupDto[] | undefined>(undefined);
     const [inputText, setInputText] = useState('');
+
+    const { isAuthenticated } = useContext(AuthContext);
     
     async function CreateComment() {
         setInputText('');
@@ -59,9 +62,11 @@ function CommentList(props: any) {
                     </>
                     
                 ))}
-
-                <div className="comment_input_block">
-                    <input
+                {
+                    isAuthenticated
+                    ?
+                    <div className="comment_input_block">
+                        <input
                         type='text'
                         name='title'
                         className='comment_input'
@@ -70,8 +75,12 @@ function CommentList(props: any) {
                         onChange={(event) => setInputText(event.target.value)}
                         onKeyDown={handleKeyDown}
                     />
-                    <input type="image" className="send_comment_button" src={SendComment} onClick={CreateComment}/>
-                </div>
+                        <input type="image" className="send_comment_button" src={SendComment} onClick={CreateComment}/>
+                    </div>
+                    :
+                    <></>
+                }
+                
 
             </div>
             
