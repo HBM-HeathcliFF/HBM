@@ -28,7 +28,7 @@ namespace HBM.Application.Comments.Commands.UpdateComment
             }
 
             entity.Text = request.Text;
-            entity.EditDate = DateTime.Now;
+            entity.EditDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", "");
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

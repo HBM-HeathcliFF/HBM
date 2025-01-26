@@ -39,7 +39,6 @@ namespace HBM.WebAPI.Controllers
         /// <response code="200">Success</response>
         /// <response code="401">If the user is unauthorized</response>
         [HttpGet("{postId}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<CommentListVm>> GetAll(Guid postId)
@@ -66,11 +65,9 @@ namespace HBM.WebAPI.Controllers
         /// <param name="createCommentDto">CreateCommentDto object</param>
         /// <returns>Returns id (guid)</returns>
         /// <response code="201">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpPost]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCommentDto createCommentDto)
         {
             var createAppUserDto = new CreateAppUserDto

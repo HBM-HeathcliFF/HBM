@@ -1,21 +1,19 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
-import { Client, PostLookupDto } from '../api/api';
-import likesImg from '../images/likes.png';
-import commentsImg from '../images/comments.png';
-import viewsImg from '../images/views.png';
+import { useEffect, useState } from 'react';
+import { Client, PostLookupDto } from '../api/api'; 
+import PostFooter from './PostFooter';
 
 const apiClient = new Client('https://localhost:44327');
 
-const PostList: FC<{}> = (): ReactElement => {
+function PostList() {
     const [posts, setPosts] = useState<PostLookupDto[] | undefined>(undefined);
 
-    async function getPosts() {
-        const postListVm = await apiClient.getAll2('1.0');
-        setPosts(postListVm.posts);
-    }
-
     useEffect(() => {
-        setTimeout(getPosts, 500);
+        async function getPosts() {
+            const postListVm = await apiClient.getAllPosts('1.0');
+            setPosts(postListVm.posts);
+        }
+
+        getPosts();
     }, []);
 
     return (
@@ -29,22 +27,7 @@ const PostList: FC<{}> = (): ReactElement => {
                             
                     <div className="post-text">{post.details}</div>
                             
-                    <div className="post__footer">
-                        <div className="post__footer_left">
-                            <img className="post__footer_icon" src={likesImg}/>
-                            <div className="post__footer-text">7</div>
-                        </div>
-                                
-                        <div className="post__footer_left">
-                            <img className="post__footer_icon" src={commentsImg}/>
-                            <div className="post__footer-text">1</div>
-                        </div>
-
-                        <div className="post__footer_right">
-                            <img className="post__footer_icon" src={viewsImg}/>
-                            <div className="post__footer-text">398</div>
-                        </div>
-                    </div>
+                    <PostFooter postId={post.id}/>
                           
                 </div>
             ))}

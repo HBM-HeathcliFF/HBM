@@ -8,7 +8,7 @@ namespace HBM.Application.Comments.Queries.GetCommentList
     {
         public Guid Id { get; set; }
         public string Text { get; set; }
-        public DateTime CreationDate { get; set; }
+        public string CreationDate { get; set; }
         public string UserName { get; set; }
 
         public void Mapping(Profile profile)

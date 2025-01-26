@@ -1,41 +1,22 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { MenuButtons, LoginButton, LogoutButton } from './header-buttons'
-import { loadUser, signinRedirect, signoutRedirect } from '../auth/user-service';
+import { signinRedirect, signoutRedirect } from '../auth/user-service';
 import logoImg from '../images/logo.png';
-import { setUserName, setUserRole } from '../auth/auth-headers';
+import { AuthContext } from '../auth/auth-provider';
 
-const Header: FC<{}> = (): ReactElement => {
-    const [role, setRole] = useState('');
-    const [name, setName] = useState('');
-    const [isLoggedIn, setAuthStatus] = useState(
-        localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') === 'true' : false
-    );
+function Header() {
+    const { role, name, isAuthenticated, setRole, setName, setAuth } = useContext(AuthContext);
 
     function handleLoginClick() {
-        localStorage.setItem('isLoggedIn', 'true');
-        setAuthStatus(true);
         signinRedirect();
     }
 
     function handleLogoutClick() {
-        localStorage.setItem('isLoggedIn', 'false');
-        setAuthStatus(false);
         signoutRedirect({'id_token_hint': localStorage.getItem('id_token')});
     }
 
-    function getUserData() {
-        loadUser().then(res => {
-            setUserName(res);
-            setUserRole(res);
-            let userRole = localStorage.getItem('user_role');
-            let userName = localStorage.getItem('user_name');
-            setRole(userRole ? userRole : '');
-            setName(userName ? userName : '');
-        });
-    }
-
     useEffect(() => {
-        setTimeout(getUserData, 500);
+
     }, []);
 
     return (
@@ -50,7 +31,7 @@ const Header: FC<{}> = (): ReactElement => {
                 <div className="header__right_part">
                     <input type="search" className="header__search" placeholder='Поиск'/>
                     {
-                        isLoggedIn
+                        isAuthenticated
                         ?
                         <LogoutButton onClick={handleLogoutClick} name={name}/>
                         :

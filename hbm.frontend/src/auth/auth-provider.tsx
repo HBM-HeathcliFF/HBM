@@ -1,16 +1,40 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState, createContext } from 'react';
 import { User, UserManager } from 'oidc-client';
-import { setAuthHeader, setIdToken, setUserRole } from './auth-headers';
+import { setAuthHeader, setIdToken, setUserId, setUserName, setUserRole } from './auth-headers';
+
+type AuthContextType = {
+    role: any;
+    name: any;
+    isAuthenticated: boolean;
+    setName: (name: any) => void;
+    setRole: (role: any) => void;
+    setAuth: (auth: boolean) => void;
+};
+  
+export const AuthContext = createContext<AuthContextType>({
+    role: '',
+    name: '',
+    isAuthenticated: false,
+    setName: () => { },
+    setRole: () => { },
+    setAuth: () => { }
+});
 
 type AuthProviderProps = {
     userManager: UserManager;
     children?: React.ReactNode;
 };
 
-const AuthProvider: FC<AuthProviderProps> = ({
+export const AuthProvider: FC<AuthProviderProps> = ({
         userManager: manager,
         children,
     }): any => {
+    const [role, setRole] = useState(localStorage.getItem('user_role'));
+    const [name, setName] = useState(localStorage.getItem('user_name'));
+    const [isAuthenticated, setAuth] = useState(
+        localStorage.getItem('isAuthenticated') ? localStorage.getItem('isAuthenticated') === 'true' : false
+    );
+
     let userManager = useRef<UserManager>();
     useEffect(() => {
         userManager.current = manager;
@@ -19,10 +43,22 @@ const AuthProvider: FC<AuthProviderProps> = ({
             setAuthHeader(user.access_token);
             setIdToken(user.id_token);
             setUserRole(user.access_token);
+            setUserName(user.access_token);
+            setUserId(user.access_token);
+            localStorage.setItem('isAuthenticated', 'true');
+
+            let r = localStorage.getItem('user_role');
+            let n = localStorage.getItem('user_name');
+            setRole(r ? r : '');
+            setName(n ? n : '');
+            setAuth(true);
         };
         const onUserUnloaded = () => {
             setAuthHeader(null);
             setUserRole(null);
+            setUserName(null);
+            setUserId(null);
+            localStorage.setItem('isAuthenticated', 'false');
             console.log('User unloaded');
         };
         const onAccessTokenExpiring = () => {
@@ -52,7 +88,11 @@ const AuthProvider: FC<AuthProviderProps> = ({
         };
     }, [manager]);
 
-    return React.Children.only(children);
+    return(
+        <AuthContext.Provider value={{ role, name, isAuthenticated, setName, setRole, setAuth }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export default AuthProvider;

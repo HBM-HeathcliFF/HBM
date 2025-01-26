@@ -3,7 +3,7 @@ import { Client, CreatePostDto } from '../api/api';
 
 const apiClient = new Client('https://localhost:44327');
 
-const CreatePost = () => {
+export default function CreatePost() {
     const [inputTitle, setInputTitle] = useState('');
     const [inputDetails, setInputDetails] = useState('');
 
@@ -12,7 +12,8 @@ const CreatePost = () => {
             title: inputTitle,
             details: inputDetails
         };
-        const response = await apiClient.create2('1.0', createPostDto);
+
+        await apiClient.createPost('1.0', createPostDto);
     }
 
     return (
@@ -54,4 +55,3 @@ const CreatePost = () => {
         </section>
     );
 };
-export default CreatePost;

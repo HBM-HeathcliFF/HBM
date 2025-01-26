@@ -19,7 +19,7 @@ namespace HBM.Application.Comments.Commands.CreateComment
                 UserId = request.UserId,
                 Text = request.Text,
                 Id = Guid.NewGuid(),
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", ""),
                 EditDate = null
             };
 

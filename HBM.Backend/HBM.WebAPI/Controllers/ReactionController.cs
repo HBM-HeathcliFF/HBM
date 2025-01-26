@@ -4,7 +4,6 @@ using HBM.Application.AppUsers.Commands.CreateAppUser;
 using HBM.Application.Interfaces;
 using HBM.Application.Reactions.Commands.CreateReaction;
 using HBM.Application.Reactions.Commands.DeleteReaction;
-using HBM.Application.Reactions.Commands.UpdateReaction;
 using HBM.Application.Reactions.Queries.GetReactionList;
 using HBM.WebAPI.Models.AppUser;
 using HBM.WebAPI.Models.Reaction;
@@ -35,11 +34,8 @@ namespace HBM.WebAPI.Controllers
         /// <param name="postId">Post id (guid)</param>
         /// <returns>Returns ReactionListVm</returns>
         /// <response code="200">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpGet("{postId}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<ReactionListVm>> GetAll(Guid postId)
         {
             var query = new GetReactionListQuery
@@ -85,32 +81,6 @@ namespace HBM.WebAPI.Controllers
             command2.UserId = _currentUserService.UserId;
             var commentId = await Mediator.Send(command2);
             return Ok(commentId);
-        }
-
-        /// <summary>
-        /// Updates the reaction
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// PUT /reaction
-        /// {
-        ///     isLiked: "updated reaction type"
-        /// }
-        /// </remarks>
-        /// <param name="updateReactionDto">UpdateReactionDto object</param>
-        /// <returns>Returns NoContent</returns>
-        /// <response code="204">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
-        [HttpPut]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult> Update([FromBody] UpdateReactionDto updateReactionDto)
-        {
-            var command = _mapper.Map<UpdateReactionCommand>(updateReactionDto);
-            command.UserId = _currentUserService.UserId;
-            await Mediator.Send(command);
-            return NoContent();
         }
 
         /// <summary>

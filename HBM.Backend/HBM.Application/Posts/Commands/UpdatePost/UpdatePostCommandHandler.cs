@@ -25,7 +25,7 @@ namespace HBM.Application.Posts.Commands.UpdatePost
 
             entity.Details = request.Details;
             entity.Title = request.Title;
-            entity.EditDate = DateTime.Now;
+            entity.EditDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", "");
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

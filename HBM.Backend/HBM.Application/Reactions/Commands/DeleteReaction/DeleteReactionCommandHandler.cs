@@ -17,8 +17,7 @@ namespace HBM.Application.Reactions.Commands.DeleteReaction
             var entity = await _dbContext.Reactions.FindAsync(new object[] { request.Id }, cancellationToken);
 
             if (entity == null ||
-                entity.UserId != request.UserId ||
-                entity.PostId != request.PostId)
+                entity.UserId != request.UserId)
             {
                 throw new NotFoundException(nameof(Reaction), request.Id);
             }

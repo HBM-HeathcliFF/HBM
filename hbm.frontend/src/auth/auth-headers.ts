@@ -17,3 +17,8 @@ export function setUserName(token: string | null | undefined) {
     const helper = new JwtHelper();
     localStorage.setItem('user_name', token ? helper.decodeToken(token).name : '');
 }
+
+export function setUserId(token: string | null | undefined) {
+    const helper = new JwtHelper();
+    localStorage.setItem('user_id', token ? helper.decodeToken(token).sub : '');
+}
