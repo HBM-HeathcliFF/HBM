@@ -11,6 +11,8 @@ namespace HBM.Application.Posts.Queries.GetPostList
         public string Details { get; set; }
         public string CreationDate { get; set; }
         public string UserName { get; set; }
+        public int CommentsCount { get; set; }
+        public int ReactionsCount { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -24,7 +26,11 @@ namespace HBM.Application.Posts.Queries.GetPostList
                 .ForMember(postDto => postDto.CreationDate,
                     opt => opt.MapFrom(post => post.CreationDate))
                 .ForMember(postDto => postDto.UserName,
-                    opt => opt.MapFrom(post => post.AppUser.UserName));
+                    opt => opt.MapFrom(post => post.AppUser.UserName))
+                .ForMember(postDto => postDto.CommentsCount,
+                    opt => opt.MapFrom(post => post.Comments.Count))
+                .ForMember(postDto => postDto.ReactionsCount,
+                    opt => opt.MapFrom(post => post.Reactions.Count));
         }
     }
 }

@@ -88,18 +88,27 @@
 .post__title {
     color: white;
     font-size: 24px;
-    margin: 25px;
+    margin-left: 25px;
+    margin-top: 25px;
 }
 .post__title:hover {
     color: white;
     text-decoration: underline ;
     font-size: 24px;
-    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-top: 25px;
 }
 .post-text {
     color: white;
     font-size: 20px;
     margin-left: 25px;
+}
+.post_date {
+    color: #b3b3b3;
+    font-size: 16px;
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 25px;
 }
 .post__footer {
     text-align: left;

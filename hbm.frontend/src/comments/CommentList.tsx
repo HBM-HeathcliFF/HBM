@@ -40,7 +40,9 @@ function CommentList(props: any) {
     let isFirst = true;
 
     return (
-        <section>
+        <>
+            {comments?.length! > 0
+            ? 
             <div className="comments__block">
 
                 {comments?.map((comment) => (
@@ -81,10 +83,11 @@ function CommentList(props: any) {
                     <></>
                 }
                 
-
             </div>
+            : 
+            <></>}
             
-        </section>
+        </>
     );
 };
 export default CommentList;

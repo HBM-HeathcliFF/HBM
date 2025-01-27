@@ -1,30 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Client, CreateReactionDto, ReactionLookupDto } from '../api/api';
 import likesImg from '../images/likes.png';
 import likePressedImg from '../images/like_pressed.png';
+import { AuthContext } from '../auth/auth-provider';
 
 const apiClient = new Client('https://localhost:44327');
 
 function Reactions(props: any) {
     const [reactions, setReactions] = useState<ReactionLookupDto[] | undefined>(undefined);
     const [userReaction, setUserReaction] = useState(false);
+
+    const { isAuthenticated } = useContext(AuthContext);
     
     async function addReaction() {
-        const createReactionDto: CreateReactionDto = {
-            postId: props.postId
-        };
-        setUserReaction(true);
-        await apiClient.createReaction('1.0', createReactionDto);
-        getReactions();
+        if (isAuthenticated) {
+            const createReactionDto: CreateReactionDto = {
+                postId: props.postId
+            };
+            setUserReaction(true);
+            await apiClient.createReaction('1.0', createReactionDto);
+            getReactions();
+        }
     }
 
     async function removeReaction() {
-        const reaction = reactions?.find(r => r.userId === localStorage.getItem('user_id'));
-        if (reaction !== undefined) {
-            setUserReaction(false);
-            await apiClient.deleteReaction(reaction.id, '1.0');
+        if (isAuthenticated) {
+            const reaction = reactions?.find(r => r.userId === localStorage.getItem('user_id'));
+            if (reaction !== undefined) {
+                setUserReaction(false);
+                await apiClient.deleteReaction(reaction.id, '1.0');
+            }
+            getReactions();
         }
-        getReactions();
     }
 
     async function getReactions() {

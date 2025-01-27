@@ -30,22 +30,22 @@ export function MenuButtons(props: any) {
 function UserHButtons() {
     return(
     <ul className="header__buttons_panel">
-        <a href="/"><li className="menu__item">Новое</li></a>
+        <a href="/new"><li className="menu__item">Новое</li></a>
         <a><li className="menu__item">|</li></a>
-        <a href="/"><li className="menu__item">Популярное</li></a>
+        <a href="/popular"><li className="menu__item">Популярное</li></a>
         <a><li className="menu__item">|</li></a>
-        <a href="/"><li className="menu__item">Лучшее</li></a>
+        <a href="/the-best"><li className="menu__item">Лучшее</li></a>
     </ul>)
 }
   
 function AdminHButtons() {
     return(
     <ul className="header__buttons_panel">
-        <a href="/"><li className="menu__item">Новое</li></a>
+        <a href="/new"><li className="menu__item">Новое</li></a>
         <a><li className="menu__item">|</li></a>
-        <a href="/"><li className="menu__item">Популярное</li></a>
+        <a href="/popular"><li className="menu__item">Популярное</li></a>
         <a><li className="menu__item">|</li></a>
-        <a href="/"><li className="menu__item">Лучшее</li></a>
+        <a href="/the-best"><li className="menu__item">Лучшее</li></a>
         <a><li className="menu__item">|</li></a>
         <a href="/create-post"><li className="menu__item">Новый пост</li></a>
     </ul>)

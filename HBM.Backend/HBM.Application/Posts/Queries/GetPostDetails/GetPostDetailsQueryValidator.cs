@@ -7,7 +7,6 @@ namespace HBM.Application.Posts.Queries.GetPostDetails
         public GetPostDetailsQueryValidator()
         {
             RuleFor(post => post.Id).NotEqual(Guid.Empty);
-            RuleFor(post => post.UserId).NotEqual(Guid.Empty);
         }
     }
 }

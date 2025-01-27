@@ -20,7 +20,7 @@ namespace HBM.Application.Posts.Queries.GetPostDetails
             var entity = await _dbContext.Posts
                 .FirstOrDefaultAsync(post => post.Id == request.Id, cancellationToken);
 
-            if (entity == null || entity.UserId != request.UserId)
+            if (entity == null)
             {
                 throw new NotFoundException(nameof(Post), request.Id);
             }

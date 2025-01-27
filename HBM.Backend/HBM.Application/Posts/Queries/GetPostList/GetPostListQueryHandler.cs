@@ -20,6 +20,8 @@ namespace HBM.Application.Posts.Queries.GetPostList
                 .ProjectTo<PostLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
+            postsQuery.Reverse();
+
             return new PostListVm { Posts = postsQuery };
         }
     }

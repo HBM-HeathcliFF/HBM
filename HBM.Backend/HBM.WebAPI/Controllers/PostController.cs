@@ -61,7 +61,6 @@ namespace HBM.WebAPI.Controllers
         {
             var query = new GetPostDetailsQuery
             {
-                UserId = _currentUserService.UserId,
                 Id = id
             };
             var vm = await Mediator.Send(query);

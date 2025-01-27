@@ -20,7 +20,7 @@ namespace HBM.Application.Posts.Commands.CreatePost
                 Title = request.Title,
                 Details = request.Details,
                 Id = Guid.NewGuid(),
-                CreationDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", ""),
+                CreationDate = DateTime.Now.ToString("dd MMM yyyy").Replace(".", ""),
                 EditDate = null
             };
 

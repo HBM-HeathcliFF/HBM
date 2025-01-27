@@ -100,10 +100,6 @@ export class Client extends ClientBase {
         return Promise.resolve<string>(null as any);
     }
 
-    /**
-     * @param body (optional) 
-     * @return No Content
-     */
     updateComment(version: string, body: UpdateCommentDto | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/{version}/Comment";
         if (version === undefined || version === null)
@@ -149,10 +145,6 @@ export class Client extends ClientBase {
         return Promise.resolve<void>(null as any);
     }
 
-    /**
-     * @param id (optional) 
-     * @return No Content
-     */
     deleteComment(id: string | undefined, version: string): Promise<void> {
         let url_ = this.baseUrl + "/api/{version}/Comment?";
         if (version === undefined || version === null)
@@ -593,6 +585,8 @@ export interface PostLookupDto {
     details?: string | undefined;
     creationDate?: string | undefined;
     userName?: string | undefined;
+    commentsCount?: number;
+    reactionsCount?: number;
 }
 
 export interface ProblemDetails {
