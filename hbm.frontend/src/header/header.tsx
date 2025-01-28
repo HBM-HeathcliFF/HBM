@@ -1,8 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MenuButtons, LoginButton, LogoutButton } from './header-buttons'
 import { signinRedirect, signoutRedirect } from '../auth/user-service';
 import logoImg from '../images/logo.png';
 import { AuthContext } from '../auth/auth-provider';
+import Search from './search';
+import SearchProvider from './search-provider';
 
 function Header() {
     const { role, name, isAuthenticated } = useContext(AuthContext);
@@ -15,10 +17,6 @@ function Header() {
         signoutRedirect({'id_token_hint': localStorage.getItem('id_token')});
     }
 
-    useEffect(() => {
-
-    }, []);
-
     return (
         <header className="App-header">
                     
@@ -29,7 +27,7 @@ function Header() {
                 <MenuButtons role={role}/>
                                 
                 <div className="header__right_part">
-                    <input type="search" className="header__search" placeholder='Поиск'/>
+                    <Search/>
                     {
                         isAuthenticated
                         ?
