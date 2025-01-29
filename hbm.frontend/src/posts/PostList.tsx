@@ -3,6 +3,8 @@ import { Client, PostLookupDto } from '../api/api';
 import PostFooter from './PostFooter';
 import { useLocation } from 'react-router-dom';
 import { SearchContext } from '../header/search-provider';
+import DeleteButton from '../images/delete.png';
+import { AuthContext } from '../auth/auth-provider';
 
 const apiClient = new Client('https://localhost:44327');
 
@@ -10,6 +12,7 @@ function PostList() {
     const [posts, setPosts] = useState<PostLookupDto[] | undefined>(undefined);
 
     const { text } = useContext(SearchContext);
+    const { role } = useContext(AuthContext);
     const location = useLocation();
 
     useEffect(() => {
@@ -39,6 +42,11 @@ function PostList() {
         setPosts(postListVm.posts);
     }
 
+    async function deletePost(id: string) {
+        const response = await apiClient.deletePost(id, '1.0');
+        getPosts();
+    }
+
     useEffect(() => {
         getPosts();
     }, []);
@@ -47,10 +55,21 @@ function PostList() {
         <>
             {posts?.map((post) => (
                 <div className="post" key={post.id}>
-                
-                    <ul>
-                        <a href={`/posts/${post.id}`}><li className="post__title">{post.title}</li></a>
-                    </ul>
+                    
+                    <div className='post_title_container'>
+                        <ul>
+                            <a href={`/posts/${post.id}`}><li className="post__title">{post.title}</li></a>
+                        </ul>
+                        {
+                            role === 'Owner' || role === 'Admin'
+                            ?
+                            <input type="image" className="post_delete_button" src={DeleteButton} onClick={() => deletePost(post.id!)}/>
+                            :
+                            <></>
+                        }
+                        
+                    </div>
+                    
                     <div className="post_date">{post.creationDate}</div>
                             
                     <div className="post-text">{post.details}</div>

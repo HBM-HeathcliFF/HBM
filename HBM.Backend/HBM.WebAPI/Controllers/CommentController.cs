@@ -146,7 +146,8 @@ namespace HBM.WebAPI.Controllers
                 var command = new DeleteCommentCommand
                 {
                     Id = id,
-                    UserId = _currentUserService.UserId
+                    UserId = comment.UserId,
+                    PostId = comment.PostId
                 };
                 await Mediator.Send(command);
             }
