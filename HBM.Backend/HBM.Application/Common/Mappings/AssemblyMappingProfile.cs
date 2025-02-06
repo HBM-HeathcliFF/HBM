@@ -1,6 +1,5 @@
-﻿using System.Linq;
+﻿using AutoMapper;
 using System.Reflection;
-using AutoMapper;
 
 namespace HBM.Application.Common.Mappings
 {

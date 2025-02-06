@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityModel;
 using Duende.IdentityServer.Services;
+using HBM.Identity.Common.Constants;
 using HBM.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,14 @@ namespace HBM.Identity.Controllers
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IIdentityServerInteractionService _interactionService;
 
         public AuthController(SignInManager<AppUser> signInManager,
             UserManager<AppUser> userManager,
             IIdentityServerInteractionService interactionService,
             RoleManager<IdentityRole> roleManager) =>
-            (_signInManager, _userManager, _roleManager, _interactionService) =
-            (signInManager, userManager, roleManager, interactionService);
+            (_signInManager, _userManager, _interactionService) =
+            (signInManager, userManager, interactionService);
 
         [HttpGet]
         public IActionResult Login(string returnUrl)
@@ -82,11 +82,11 @@ namespace HBM.Identity.Controllers
             var result = await _userManager.CreateAsync(user, viewModel.Password);
             if (result.Succeeded)
             {
-                _userManager.AddToRoleAsync(user, "User").GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(user, Roles.User).GetAwaiter().GetResult();
                 var claims = _userManager.AddClaimsAsync(user, new Claim[]
                 {
                     new Claim(JwtClaimTypes.Name, user.UserName),
-                    new Claim(JwtClaimTypes.Role, "User")
+                    new Claim(JwtClaimTypes.Role, Roles.User)
                 }).Result;
 
                 await _signInManager.SignInAsync(user, false);

@@ -12,13 +12,11 @@ namespace HBM.Identity.Services
     {
         IUserClaimsPrincipalFactory<AppUser> _userClaimsPrincipalFactory;
         UserManager<AppUser> _userManager;
-        RoleManager<IdentityRole> _roleManager;
 
         public ProfileService(
             IUserClaimsPrincipalFactory<AppUser> userClaimsPrincipalFactory,
-            UserManager<AppUser> userManager,
-            RoleManager<IdentityRole> roleManager) =>
-            (_userClaimsPrincipalFactory, _userManager, _roleManager) = (userClaimsPrincipalFactory, userManager, roleManager);
+            UserManager<AppUser> userManager) =>
+            (_userClaimsPrincipalFactory, _userManager) = (userClaimsPrincipalFactory, userManager);
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
