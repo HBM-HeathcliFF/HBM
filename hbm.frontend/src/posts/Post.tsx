@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Client, PostDetailsVm } from '../api/api'; 
+import { Client, PostVm } from '../api/api'; 
 import PostFooter from './PostFooter';
 import { useParams } from 'react-router-dom';
 
 const apiClient = new Client('https://localhost:44327');
 
 function Post() {
-    const [post, setPost] = useState<PostDetailsVm | undefined>(undefined);
+    const [post, setPost] = useState<PostVm | undefined>(undefined);
 
     const params = useParams();
     const id = params.id;
@@ -25,14 +25,14 @@ function Post() {
             {
                 post !== undefined
                 ?
-                <div className="post">
+                <div className='post'>
                 
                     <ul>
-                        <a href={`/posts/${post.id}`}><li className="post__title">{post.title}</li></a>
+                        <a href={'/posts/${post.id}'}><li className='post_title'>{post.title}</li></a>
                     </ul>
-                    <div className="post_date">{post.creationDate}</div>
+                    <div className='post_date'>{post.creationDate}</div>
                             
-                    <div className="post-text">{post.details}</div>
+                    <div className='post_text'>{post.text}</div>
                             
                     <PostFooter postId={post.id}/>
                           

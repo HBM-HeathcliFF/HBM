@@ -8,7 +8,7 @@ namespace HBM.WebAPI.Models.Post
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public string Details { get; set; }
+        public string Text { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -17,8 +17,8 @@ namespace HBM.WebAPI.Models.Post
                 opt => opt.MapFrom(postDto => postDto.Id))
                 .ForMember(postCommand => postCommand.Title,
                 opt => opt.MapFrom(postDto => postDto.Title))
-                .ForMember(postCommand => postCommand.Details,
-                opt => opt.MapFrom(postDto => postDto.Details));
+                .ForMember(postCommand => postCommand.Text,
+                opt => opt.MapFrom(postDto => postDto.Text));
         }
     }
 }

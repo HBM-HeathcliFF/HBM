@@ -5,12 +5,12 @@ const apiClient = new Client('https://localhost:44327');
 
 export default function CreatePost() {
     const [inputTitle, setInputTitle] = useState('');
-    const [inputDetails, setInputDetails] = useState('');
+    const [inputText, setInputText] = useState('');
 
     async function CreatePost() {
         const createPostDto: CreatePostDto = {
             title: inputTitle,
-            details: inputDetails
+            text: inputText
         };
 
         await apiClient.createPost('1.0', createPostDto);
@@ -18,11 +18,11 @@ export default function CreatePost() {
 
     return (
         <section>
-            <div className="post">
+            <div className='post'>
                     
                 <form>
-                    <div className="input_block">
-                        <div className="post-text">
+                    <div className='input_block'>
+                        <div className='post_text'>
                             Название:
                         </div>
                         <input
@@ -34,20 +34,20 @@ export default function CreatePost() {
                         />
                     </div>
 
-                    <div className="input_block">
-                        <div className="post-text">
+                    <div className='input_block'>
+                        <div className='post_text'>
                             Содержимое:
                         </div>
                         <textarea
-                            name='details'
-                            value={inputDetails}
-                            onChange={(event) => setInputDetails(event.target.value)}
-                            className="input_details"
+                            name='text'
+                            value={inputText}
+                            onChange={(event) => setInputText(event.target.value)}
+                            className='input_text'
                         ></textarea>
                     </div>
                     
-                    <div className="button_panel">
-                        <input type="submit" value="Создать" className="create_button" onClick={CreatePost}/>
+                    <div className='button_panel'>
+                        <input type='submit' value='Создать' className='create_button' onClick={CreatePost}/>
                     </div>
                 </form>
 

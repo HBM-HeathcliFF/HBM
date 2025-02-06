@@ -2,8 +2,8 @@ import logoutImg from '../images/logout.png';
 
 export function LoginButton(props: any) {
     return (
-        <ul className="header__auth_panel">
-            <button className="auth_button" onClick={props.onClick}>
+        <ul className='header_auth_panel'>
+            <button className='auth_button' onClick={props.onClick}>
                 Войти
             </button>
         </ul>
@@ -12,16 +12,16 @@ export function LoginButton(props: any) {
   
 export function LogoutButton(props: any) {
     return (
-    <div className="header__auth_panel">
-		<a className="username">{props.name}</a>
-		<input type="image" className="logout_button" src={logoutImg} onClick={props.onClick}/>
+    <div className='header_auth_panel'>
+		<a className='username'>{props.name}</a>
+		<input type='image' className='logout_button' src={logoutImg} onClick={props.onClick}/>
 	</div>
     );
 }
 
 export function MenuButtons(props: any) {
-    if (props.role === "Owner" ||
-        props.role === "Admin") {
+    if (props.role === 'Owner' ||
+        props.role === 'Admin') {
         return <AdminHButtons/>;
     }
     return <UserHButtons/>;
@@ -29,24 +29,24 @@ export function MenuButtons(props: any) {
 
 function UserHButtons() {
     return(
-    <ul className="header__buttons_panel">
-        <a href="/new"><li className="menu__item">Новое</li></a>
-        <a><li className="menu__item">|</li></a>
-        <a href="/popular"><li className="menu__item">Популярное</li></a>
-        <a><li className="menu__item">|</li></a>
-        <a href="/the-best"><li className="menu__item">Лучшее</li></a>
+    <ul className='header_buttons_panel'>
+        <a href='/new'><li className='menu_item'>Новое</li></a>
+        <a><li className='menu_item'>|</li></a>
+        <a href='/popular'><li className='menu_item'>Популярное</li></a>
+        <a><li className='menu_item'>|</li></a>
+        <a href='/the-best'><li className='menu_item'>Лучшее</li></a>
     </ul>)
 }
   
 function AdminHButtons() {
     return(
-    <ul className="header__buttons_panel">
-        <a href="/new"><li className="menu__item">Новое</li></a>
-        <a><li className="menu__item">|</li></a>
-        <a href="/popular"><li className="menu__item">Популярное</li></a>
-        <a><li className="menu__item">|</li></a>
-        <a href="/the-best"><li className="menu__item">Лучшее</li></a>
-        <a><li className="menu__item">|</li></a>
-        <a href="/create-post"><li className="menu__item">Новый пост</li></a>
+    <ul className='header_buttons_panel'>
+        <a href='/new'><li className='menu_item'>Новое</li></a>
+        <a><li className='menu_item'>|</li></a>
+        <a href='/popular'><li className='menu_item'>Популярное</li></a>
+        <a><li className='menu_item'>|</li></a>
+        <a href='/the-best'><li className='menu_item'>Лучшее</li></a>
+        <a><li className='menu_item'>|</li></a>
+        <a href='/create-post'><li className='menu_item'>Новый пост</li></a>
     </ul>)
 }

@@ -2,9 +2,9 @@
 
 namespace HBM.Application.Posts.Queries.GetPostDetails
 {
-    public class GetPostDetailsQueryValidator : AbstractValidator<GetPostDetailsQuery>
+    public class GetPostQueryValidator : AbstractValidator<GetPostQuery>
     {
-        public GetPostDetailsQueryValidator()
+        public GetPostQueryValidator()
         {
             RuleFor(post => post.Id).NotEqual(Guid.Empty);
         }

@@ -2,7 +2,7 @@
 
 namespace HBM.Application.Posts.Queries.GetPostDetails
 {
-    public class GetPostDetailsQuery : IRequest<PostDetailsVm>
+    public class GetPostQuery : IRequest<PostVm>
     {
         public Guid Id { get; set; }
     }

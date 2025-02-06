@@ -366,7 +366,7 @@ export class Client extends ClientBase {
         return Promise.resolve<void>(null as any);
     }
 
-    getPost(id: string, version: string): Promise<PostDetailsVm> {
+    getPost(id: string, version: string): Promise<PostVm> {
         let url_ = this.baseUrl + "/api/{version}/Post/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -390,13 +390,13 @@ export class Client extends ClientBase {
         });
     }
 
-    protected processGetPost(response: Response): Promise<PostDetailsVm> {
+    protected processGetPost(response: Response): Promise<PostVm> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as PostDetailsVm;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as PostVm;
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -404,7 +404,7 @@ export class Client extends ClientBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<PostDetailsVm>(null as any);
+        return Promise.resolve<PostVm>(null as any);
     }
 
     getAllReactions(postId: string, version: string): Promise<ReactionListVm> {
@@ -560,19 +560,11 @@ export interface CreateCommentDto {
 
 export interface CreatePostDto {
     title: string;
-    details: string;
+    text: string;
 }
 
 export interface CreateReactionDto {
     postId: string;
-}
-
-export interface PostDetailsVm {
-    id?: string;
-    title?: string | undefined;
-    details?: string | undefined;
-    creationDate?: string | undefined;
-    editDate?: string | undefined;
 }
 
 export interface PostListVm {
@@ -582,11 +574,19 @@ export interface PostListVm {
 export interface PostLookupDto {
     id?: string;
     title?: string | undefined;
-    details?: string | undefined;
+    text?: string | undefined;
     creationDate?: string | undefined;
     userName?: string | undefined;
     commentsCount?: number;
     reactionsCount?: number;
+}
+
+export interface PostVm {
+    id?: string;
+    title?: string | undefined;
+    text?: string | undefined;
+    creationDate?: string | undefined;
+    editDate?: string | undefined;
 }
 
 export interface ProblemDetails {
@@ -617,7 +617,7 @@ export interface UpdateCommentDto {
 export interface UpdatePostDto {
     id?: string;
     title?: string | undefined;
-    details?: string | undefined;
+    text?: string | undefined;
 }
 
 export class ApiException extends Error {

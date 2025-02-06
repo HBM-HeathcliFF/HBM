@@ -8,7 +8,7 @@ namespace HBM.Application.Posts.Queries.GetPostList
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public string Details { get; set; }
+        public string Text { get; set; }
         public string CreationDate { get; set; }
         public string UserName { get; set; }
         public int CommentsCount { get; set; }
@@ -21,8 +21,8 @@ namespace HBM.Application.Posts.Queries.GetPostList
                     opt => opt.MapFrom(post => post.Id))
                 .ForMember(postDto => postDto.Title,
                     opt => opt.MapFrom(post => post.Title))
-                .ForMember(postDto => postDto.Details,
-                    opt => opt.MapFrom(post => post.Details))
+                .ForMember(postDto => postDto.Text,
+                    opt => opt.MapFrom(post => post.Text))
                 .ForMember(postDto => postDto.CreationDate,
                     opt => opt.MapFrom(post => post.CreationDate))
                 .ForMember(postDto => postDto.UserName,

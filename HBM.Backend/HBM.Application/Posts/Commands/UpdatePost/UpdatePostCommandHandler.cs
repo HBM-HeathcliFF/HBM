@@ -23,7 +23,7 @@ namespace HBM.Application.Posts.Commands.UpdatePost
                 throw new NotFoundException(nameof(Post), request.Id);
             }
 
-            entity.Details = request.Details;
+            entity.Text = request.Text;
             entity.Title = request.Title;
             entity.EditDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", "");
 

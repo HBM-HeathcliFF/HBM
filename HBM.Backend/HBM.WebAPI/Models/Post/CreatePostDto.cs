@@ -10,15 +10,15 @@ namespace HBM.WebAPI.Models.Post
         [Required]
         public string Title { get; set; }
         [Required]
-        public string Details { get; set; }
+        public string Text { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CreatePostDto, CreatePostCommand>()
                 .ForMember(postCommand => postCommand.Title,
                 opt => opt.MapFrom(postDto => postDto.Title))
-                .ForMember(postCommand => postCommand.Details,
-                opt => opt.MapFrom(postDto => postDto.Details));
+                .ForMember(postCommand => postCommand.Text,
+                opt => opt.MapFrom(postDto => postDto.Text));
         }
     }
 }

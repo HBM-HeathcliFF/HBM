@@ -8,14 +8,14 @@ function PostFooter(props: any) {
 
     return (
         <>
-            <div className="post__footer">
-                <div className="post__footer_left">
+            <div className='post_footer'>
+                <div className='post_footer_left'>
                     <Reactions postId={props.postId}/>
                 </div>
                                 
-                <div className="post__footer_left">
-                    <img className="post__footer_icon" src={commentsImg}/>
-                    <div className="post__footer-text">{commentsCount !== '0' ? commentsCount : ''}</div>
+                <div className='post_footer_left'>
+                    <img className='post_footer_icon' src={commentsImg}/>
+                    <div className='post_footer_text'>{commentsCount !== '0' ? commentsCount : ''}</div>
                 </div>
             </div>
 

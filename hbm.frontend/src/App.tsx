@@ -15,12 +15,12 @@ export default function App() {
 
     return (
         <Router>
-            <div className="App">
+            <div className='App'>
                 <SearchContext.Provider value={{text, setText}}>
                     <Header/>
     
-                    <div className="page">
-                        <div className="main__block __container">
+                    <div className='page'>
+                        <div className='main_block container'>
                         
                                 <Routes>
                                     <Route element={<PrivateRoute/>}>

@@ -53,13 +53,13 @@ namespace HBM.WebAPI.Controllers
         /// Sample request:
         /// GET /post/20DC3FB7-BFA9-40AE-8CEF-12BC6F31DD79
         /// </remarks>
-        /// <returns>Returns PostDetailsVm</returns>
+        /// <returns>Returns PostVm</returns>
         /// <response code="200">Success</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<PostDetailsVm>> Get(Guid id)
+        public async Task<ActionResult<PostVm>> Get(Guid id)
         {
-            var query = new GetPostDetailsQuery
+            var query = new GetPostQuery
             {
                 Id = id
             };
@@ -75,7 +75,7 @@ namespace HBM.WebAPI.Controllers
         /// GET /post
         /// {
         ///     title: "post title",
-        ///     details: "post details"
+        ///     text: "post text"
         /// }
         /// </remarks>
         /// <param name="createPostDto">CreatePostDto object</param>
@@ -111,7 +111,8 @@ namespace HBM.WebAPI.Controllers
         /// Sample request:
         /// PUT /post
         /// {
-        ///     title: "updated post title"
+        ///     title: "updated post title",
+        ///     text: "updated post text"
         /// }
         /// </remarks>
         /// <param name="updatePostDto">UpdatePostDto object</param>

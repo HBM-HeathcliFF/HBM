@@ -15,7 +15,7 @@ function Search() {
     return (
         <input
             type='search'
-            className='header__search'
+            className='header_search'
             placeholder='Поиск'
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}

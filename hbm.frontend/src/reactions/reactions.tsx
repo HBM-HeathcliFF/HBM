@@ -56,11 +56,11 @@ function Reactions(props: any) {
             {
                 userReaction 
                 ?
-                <input type="image" className="like_button" src={likePressedImg} onClick={removeReaction}/>
+                <input type='image' className='like_button' src={likePressedImg} onClick={removeReaction}/>
                 :
-                <input type="image" className="like_button" src={likesImg} onClick={addReaction}/>
+                <input type='image' className='like_button' src={likesImg} onClick={addReaction}/>
             }
-            <div className="post__footer-text">{length}</div>
+            <div className='post_footer_text'>{length}</div>
         </>
     );
 };

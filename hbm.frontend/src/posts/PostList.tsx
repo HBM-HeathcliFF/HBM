@@ -18,7 +18,7 @@ function PostList() {
     useEffect(() => {
         if (text !== '') {
             var filteredList = posts?.filter(function(post) {
-                return post.title?.toLowerCase().search(text.toLowerCase()) !== -1 || post.details?.toLowerCase().search(text.toLowerCase()) !== -1;
+                return post.title?.toLowerCase().search(text.toLowerCase()) !== -1 || post.text?.toLowerCase().search(text.toLowerCase()) !== -1;
             }); 
             setPosts(filteredList);
         } else {
@@ -54,25 +54,25 @@ function PostList() {
     return (
         <>
             {posts?.map((post) => (
-                <div className="post" key={post.id}>
+                <div className='post' key={post.id}>
                     
                     <div className='post_title_container'>
                         <ul>
-                            <a href={`/posts/${post.id}`}><li className="post__title">{post.title}</li></a>
+                            <a href={'/posts/${post.id}'}><li className='post_title'>{post.title}</li></a>
                         </ul>
                         {
                             role === 'Owner' || role === 'Admin'
                             ?
-                            <input type="image" className="post_delete_button" src={DeleteButton} onClick={() => deletePost(post.id!)}/>
+                            <input type='image' className='post_delete_button' src={DeleteButton} onClick={() => deletePost(post.id!)}/>
                             :
                             <></>
                         }
                         
                     </div>
                     
-                    <div className="post_date">{post.creationDate}</div>
+                    <div className='post_date'>{post.creationDate}</div>
                             
-                    <div className="post-text">{post.details}</div>
+                    <div className='post_text'>{post.text}</div>
                             
                     <PostFooter postId={post.id}/>
                           

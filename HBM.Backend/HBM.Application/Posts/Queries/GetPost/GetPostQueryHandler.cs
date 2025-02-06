@@ -7,15 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HBM.Application.Posts.Queries.GetPostDetails
 {
-    public class GetPostDetailsQueryHandler : IRequestHandler<GetPostDetailsQuery, PostDetailsVm>
+    public class GetPostQueryHandler : IRequestHandler<GetPostQuery, PostVm>
     {
         private readonly IHbmDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetPostDetailsQueryHandler(IHbmDbContext dbContext, IMapper mapper) =>
+        public GetPostQueryHandler(IHbmDbContext dbContext, IMapper mapper) =>
             (_dbContext, _mapper) = (dbContext, mapper);
 
-        public async Task<PostDetailsVm> Handle(GetPostDetailsQuery request, CancellationToken cancellationToken)
+        public async Task<PostVm> Handle(GetPostQuery request, CancellationToken cancellationToken)
         {
             var entity = await _dbContext.Posts
                 .FirstOrDefaultAsync(post => post.Id == request.Id, cancellationToken);
@@ -25,7 +25,7 @@ namespace HBM.Application.Posts.Queries.GetPostDetails
                 throw new NotFoundException(nameof(Post), request.Id);
             }
 
-            return _mapper.Map<PostDetailsVm>(entity);
+            return _mapper.Map<PostVm>(entity);
         }
     }
 }

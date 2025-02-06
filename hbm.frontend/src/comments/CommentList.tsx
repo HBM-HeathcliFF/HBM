@@ -43,19 +43,19 @@ function CommentList(props: any) {
 
     function Comment(props: any) {
         return(
-            <div className="comment" key={props.comment.id}>
+            <div className='comment' key={props.comment.id}>
                 <div className='comment_head_container'>
-                    <div className="comment_username">{props.comment.userName}</div>
+                    <div className='comment_username'>{props.comment.userName}</div>
                     {
                         role === 'Owner' || role === 'Admin' || props.comment.userName === name
                         ?
-                        <input type="image" className="comment_delete_button" src={DeleteButton} onClick={() => deleteComment(props.comment.id!)}/>
+                        <input type='image' className='comment_delete_button' src={DeleteButton} onClick={() => deleteComment(props.comment.id!)}/>
                         :
                         <></>
                     }
                 </div>
-                <div className="comment-text">{props.comment.text}</div>
-                <div className="comment_date">{props.comment.creationDate}</div>
+                <div className='comment_text'>{props.comment.text}</div>
+                <div className='comment_date'>{props.comment.creationDate}</div>
             </div>
         );
     }
@@ -70,7 +70,7 @@ function CommentList(props: any) {
             ?
             <>
                 <div className='splitter'/>
-                <div className="comments__block">
+                <div className='comments_block'>
                     {comments?.map((comment) => (
                         isFirstComment
                         ?
@@ -80,13 +80,13 @@ function CommentList(props: any) {
                         </>
                         :
                         <>
-                            <div className="comment_splitter"></div>
+                            <div className='comment_splitter'></div>
                             <Comment comment={comment}/>
                         </>
                     ))}
                     {isAuthenticated
                     ?
-                    <div className="comment_input_block">
+                    <div className='comment_input_block'>
                         <input
                             type='text'
                             name='title'
@@ -96,7 +96,7 @@ function CommentList(props: any) {
                             onChange={(event) => setInputText(event.target.value)}
                             onKeyDown={handleKeyDown}
                         />
-                        <input type="image" className="send_comment_button" src={SendComment} onClick={CreateComment}/>
+                        <input type='image' className='send_comment_button' src={SendComment} onClick={CreateComment}/>
                     </div>
                     :
                     <></>}
@@ -106,9 +106,9 @@ function CommentList(props: any) {
             <>
                 {isAuthenticated
                 ?
-                <div className="comments__block">
+                <div className='comments_block'>
                     <div className='splitter'/>
-                    <div className="comment_input_block">
+                    <div className='comment_input_block'>
                         <input
                             type='text'
                             name='title'
@@ -118,7 +118,7 @@ function CommentList(props: any) {
                             onChange={(event) => setInputText(event.target.value)}
                             onKeyDown={handleKeyDown}
                         />
-                        <input type="image" className="send_comment_button" src={SendComment} onClick={CreateComment}/>
+                        <input type='image' className='send_comment_button' src={SendComment} onClick={CreateComment}/>
                     </div>
                 </div>
                 :

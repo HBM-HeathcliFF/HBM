@@ -18,7 +18,7 @@ namespace HBM.Application.Posts.Commands.CreatePost
             {
                 UserId = request.UserId,
                 Title = request.Title,
-                Details = request.Details,
+                Text = request.Text,
                 Id = Guid.NewGuid(),
                 CreationDate = DateTime.Now.ToString("dd MMM yyyy").Replace(".", ""),
                 EditDate = null

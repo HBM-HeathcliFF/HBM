@@ -4,7 +4,6 @@ import { signinRedirect, signoutRedirect } from '../auth/user-service';
 import logoImg from '../images/logo.png';
 import { AuthContext } from '../auth/auth-provider';
 import Search from './search';
-import SearchProvider from './search-provider';
 
 function Header() {
     const { role, name, isAuthenticated } = useContext(AuthContext);
@@ -18,15 +17,15 @@ function Header() {
     }
 
     return (
-        <header className="App-header">
+        <header className='App_header'>
                     
-            <div className="header__block">
+            <div className='header_block'>
                             
-                <img className="icon" src={logoImg}/>
+                <img className='icon' src={logoImg}/>
 
                 <MenuButtons role={role}/>
                                 
-                <div className="header__right_part">
+                <div className='header_right_part'>
                     <Search/>
                     {
                         isAuthenticated
