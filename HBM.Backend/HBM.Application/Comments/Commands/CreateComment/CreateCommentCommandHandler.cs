@@ -1,4 +1,5 @@
-﻿using HBM.Application.Interfaces;
+﻿using HBM.Application.Extensions;
+using HBM.Application.Interfaces;
 using HBM.Domain;
 using MediatR;
 
@@ -19,7 +20,7 @@ namespace HBM.Application.Comments.Commands.CreateComment
                 UserId = request.UserId,
                 Text = request.Text,
                 Id = Guid.NewGuid(),
-                CreationDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", ""),
+                CreationDate = DateTime.Now.ToCommentFormat(),
                 EditDate = null
             };
 

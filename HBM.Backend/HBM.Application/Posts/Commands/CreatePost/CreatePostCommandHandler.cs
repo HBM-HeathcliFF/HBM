@@ -1,4 +1,5 @@
-﻿using HBM.Application.Interfaces;
+﻿using HBM.Application.Extensions;
+using HBM.Application.Interfaces;
 using HBM.Domain;
 using MediatR;
 
@@ -20,7 +21,7 @@ namespace HBM.Application.Posts.Commands.CreatePost
                 Title = request.Title,
                 Text = request.Text,
                 Id = Guid.NewGuid(),
-                CreationDate = DateTime.Now.ToString("dd MMM yyyy").Replace(".", ""),
+                CreationDate = DateTime.Now.ToPostFormat(),
                 EditDate = null
             };
 

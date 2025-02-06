@@ -1,4 +1,5 @@
 ﻿using HBM.Application.Common.Exceptions;
+using HBM.Application.Extensions;
 using HBM.Application.Interfaces;
 using HBM.Domain;
 using MediatR;
@@ -28,7 +29,7 @@ namespace HBM.Application.Comments.Commands.UpdateComment
             }
 
             entity.Text = request.Text;
-            entity.EditDate = DateTime.Now.ToString("dd MMM yyyy в HH:mm").Replace(".", "");
+            entity.EditDate = DateTime.Now.ToCommentFormat();
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
