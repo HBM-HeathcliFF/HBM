@@ -28,7 +28,7 @@ function Post() {
                 <div className='post'>
                 
                     <ul>
-                        <a href={'/posts/${post.id}'}><li className='post_title'>{post.title}</li></a>
+                        <a href={`/posts/${post.id}`}><li className='post_title'>{post.title}</li></a>
                     </ul>
                     <div className='post_date'>{post.creationDate}</div>
                             

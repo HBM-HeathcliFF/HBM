@@ -58,7 +58,7 @@ function PostList() {
                     
                     <div className='post_title_container'>
                         <ul>
-                            <a href={'/posts/${post.id}'}><li className='post_title'>{post.title}</li></a>
+                            <a href={`/posts/${post.id}`}><li className='post_title'>{post.title}</li></a>
                         </ul>
                         {
                             role === 'Owner' || role === 'Admin'
